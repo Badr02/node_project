@@ -1,6 +1,7 @@
 import express from "express";
 import { engine } from "express-handlebars";
-import departmentRouter from "./routes/admin/departments.js"
+import departmentsRouter from "./routes/admin/departments.js";
+import subjectsRouter from "./routes/admin/subjects.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -16,8 +17,8 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './templates');
 
-app.use('/admin', departmentRouter);
-
+app.use('/admin', departmentsRouter);
+app.use('/admin', subjectsRouter);
 
 app.listen(process.env.port, () => {
     console.log(`The application started on http://localhost:${process.env.port}`);

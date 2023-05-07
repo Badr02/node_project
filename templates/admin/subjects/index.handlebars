@@ -3,8 +3,7 @@
     <div class="col-sm-3 sidenav" style="padding-top: 50px">
       <div class="row">
         <div class="col-sm-3">
-          <img src="" class="img-circle" alt="Image" width="70"
-            height="70" />
+          <img src="" class="img-circle" alt="Image" width="70" height="70" />
         </div>
         <div class="col-sm-6" style="padding-left: 20px; margin-top: -5px">
           <h4>Lana Del Rey</h4>
@@ -16,17 +15,21 @@
       </div>
 
       <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
-        <li class="active"><a href="/admin/departments">Departments</a></li>
-        <li><a href="/admin/subjects">Subjects</a></li>
+        <li><a href="/admin/departments">Departments</a></li>
+        <li class="active"><a href="/admin/subjects">Subjects</a></li>
         <li><a href="#section3">professors</a></li>
         <li><a href="#section3">Students</a></li>
       </ul>
     </div>
 
     <div class="col-sm-9" style="padding: 20px">
-      <h2 class="text-center">Departments</h2>
+      <h2 class="text-center">Subjects</h2>
       <div class="text-right">
-        <a href="/admin/departments/create" class="btn btn-primary" style="font-size: 15px; margin-top: -45px;">Add Department</a>
+        <a
+          href="/admin/subjects/create"
+          class="btn btn-primary"
+          style="font-size: 15px; margin-top: -45px;"
+        >Add Subject</a>
       </div>
 
       <table class="table table-hover" style="margin-top: 20px;">
@@ -34,20 +37,25 @@
           <tr>
             <th>Code</th>
             <th>Name</th>
+            <th>Department</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
 
-          {{#each departments}}
-          <tr>
-            <td>{{code}}</td>
-            <td>{{name}}</td>
-            <td>
-              <a class="btn btn-primary" href="/admin/departments/{{_id}}">Edit</a>
-              <a class="btn btn-danger" href="">Delete</a>
-            </td>
-          </tr>
+          {{#each subjects}}
+            <tr>
+              <td>{{code}}</td>
+              <td>{{name}}</td>
+              <td>{{department.name}}</td>
+              <td>
+                <a
+                  class="btn btn-primary"
+                  href="/admin/subjects/{{_id}}"
+                >Edit</a>
+                <a class="btn btn-danger" href="">Delete</a>
+              </td>
+            </tr>
           {{/each}}
 
         </tbody>

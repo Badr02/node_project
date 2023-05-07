@@ -16,8 +16,8 @@
 			</div>
 
 			<ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
-				<li class="active"><a href="#section1">Departments</a></li>
-				<li><a href="#section2">Subjects</a></li>
+				<li class="active"><a href="/admin/departments">Departments</a></li>
+				<li><a href="/admin/subjects">Subjects</a></li>
 				<li><a href="#section3">professors</a></li>
 				<li><a href="#section3">Students</a></li>
 			</ul>
@@ -28,11 +28,11 @@
 			<form action="/admin/departments" method="post">
 				<div>
 					<label for="name">Name:</label>
-					<input type="text" class="form-control" name="name">
+					<input type="text" class="form-control" name="name" autocomplete="off">
 				</div>
 				<div style="margin-top: 20px;">
 					<label for="code">Code:</label>
-					<input type="text" class="form-control" name="code">
+					<input type="text" class="form-control" name="code" autocomplete="off">
 				</div>
 				<div class="text-right" style="margin-top: 30px;">
 					<button type="submit" class="btn btn-success" style="font-size: 15px;">Submit</button>
