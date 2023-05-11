@@ -16,30 +16,50 @@
 
       <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
         <li><a href="/admin/departments">Departments</a></li>
-        <li class="active"><a href="/admin/subjects">Subjects</a></li>
+        <li><a href="/admin/subjects">Subjects</a></li>
         <li><a href="/admin/professors">Professors</a></li>
-        <li><a href="/admin/students">Students</a></li>
+        <li class="active"><a href="/admin/students">Students</a></li>
       </ul>
     </div>
 
     <div class="col-sm-9" style="padding: 60px">
 
-      <form action="/admin/subjects" method="post">
-        <div>
+      <form action="/admin/students" method="post">
+      <div>
+          <label for="academicNumber">Academic Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="academicNumber"
+            autocomplete="off"
+          />
+        </div>
+        <div style="margin-top: 20px;">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" name="name" autocomplete="off"/>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            autocomplete="off"
+          />
         </div>
         <div style="margin-top: 20px;">
-          <label for="code">Code:</label>
-          <input type="text" class="form-control" name="code" autocomplete="off"/>
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            autocomplete="off"
+          />
         </div>
         <div style="margin-top: 20px;">
-          <label for="department">Department:</label>
-          <select name="department" id="" class="form-control">
-            {{#each departments}}
-              <option value="{{_id}}">{{name}}</option>
-            {{/each}}
-          </select>
+          <label for="password">Password:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="password"
+            autocomplete="off"
+          />
         </div>
         <div class="text-right" style="margin-top: 30px;">
           <button
@@ -49,7 +69,6 @@
           >Submit</button>
         </div>
       </form>
-
     </div>
   </div>
 </div>
