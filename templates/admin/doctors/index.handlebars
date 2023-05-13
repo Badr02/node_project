@@ -15,63 +15,62 @@
       </div>
 
       <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
-        <li class="active"><a href="/admin/departments">Departments</a></li>
+        <li><a href="/admin/departments">Departments</a></li>
         <li><a href="/admin/subjects">Subjects</a></li>
-        <li><a href="/admin/doctors">Doctors</a></li>
+        <li class="active"><a href="/admin/doctors">Doctors</a></li>
         <li><a href="/admin/students">Students</a></li>
       </ul>
     </div>
 
     <div class="col-sm-9" style="padding: 20px">
-      <h2 class="text-center">Departments</h2>
+      <h2 class="text-center">Doctors</h2>
       <div class="text-right">
-        <a href="/admin/departments/create" class="btn btn-primary" style="font-size: 15px; margin-top: -45px;">Add
-          Department</a>
+        <a href="/admin/doctors/create" class="btn btn-primary" style="font-size: 15px; margin-top: -45px;">Add
+          Doctors</a>
       </div>
 
       <table class="table table-hover" style="margin-top: 20px;">
         <thead>
           <tr>
-            <th>Code</th>
+
             <th>Name</th>
+            <th>Username</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
 
-          {{#each departments}}
+          {{#each doctors}}
           <tr>
-            <td>{{code}}</td>
             <td>{{name}}</td>
+            <td>{{username}}</td>
             <td>
-              <a class="btn btn-primary" href="/admin/departments/{{_id}}/edit">Edit</a>
+              <a class="btn btn-primary" href="/admin/doctors/{{_id}}/edit">Edit</a>
               <a class="btn btn-danger trigger-btn" data-toggle="modal" href="#deleteConfirmation{{_id}}">Delete</a>
             </td>
           </tr>
 
-      <div id="deleteConfirmation{{_id}}" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-          <div class="modal-content">
-            <div class="modal-header flex-column">
-              <h4 class="modal-title w-100">Are you sure?</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p>Do you really want to delete {{name}} department</p>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <form action="/admin/departments/{{_id}}?_method=DELETE" method="post" style="display: inline">
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-              
+          <div id="deleteConfirmation{{_id}}" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header flex-column">
+                  <h4 class="modal-title w-100">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to delete dr.{{name}}</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <form action="/admin/doctors/{{_id}}?_method=DELETE" method="post" style="display: inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
           {{/each}}
-
         </tbody>
       </table>
     </div>
