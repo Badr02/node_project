@@ -17,7 +17,7 @@
       <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
         <li><a href="/admin/departments">Departments</a></li>
         <li><a href="/admin/subjects">Subjects</a></li>
-        <li><a href="/admin/professors">Professors</a></li>
+        <li><a href="/admin/doctors">Doctors</a></li>
         <li class="active"><a href="/admin/students">Students</a></li>
       </ul>
     </div>
@@ -25,11 +25,8 @@
     <div class="col-sm-9" style="padding: 20px">
       <h2 class="text-center">Students</h2>
       <div class="text-right">
-        <a
-          href="/admin/students/create"
-          class="btn btn-primary"
-          style="font-size: 15px; margin-top: -45px;"
-        >Add Students</a>
+        <a href="/admin/students/create" class="btn btn-primary" style="font-size: 15px; margin-top: -45px;">Add
+          Students</a>
       </div>
 
       <table class="table table-hover" style="margin-top: 20px;">
@@ -38,26 +35,42 @@
             <th>Academic Number</th>
             <th>Name</th>
             <th>Username</th>
-            <th>Password</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
 
           {{#each students}}
-            <tr>
-              <td>{{academicNumber}}</td>
-              <td>{{name}}</td>
-              <td>{{username}}</td>
-              <td>{{password}}</td>
-              <td>
-                <a
-                  class="btn btn-primary"
-                  href="/admin/departments/{{_id}}"
-                >Edit</a>
-                <a class="btn btn-danger" href="">Delete</a>
-              </td>
-            </tr>
+          <tr>
+            <td>{{academicNumber}}</td>
+            <td>{{name}}</td>
+            <td>{{username}}</td>
+            <td>
+              <a class="btn btn-primary" href="/admin/students/{{_id}}/edit">Edit</a>
+              <a class="btn btn-danger trigger-btn" data-toggle="modal" href="#deleteConfirmation{{_id}}">Delete</a>
+            </td>
+          </tr>
+
+          <div id="deleteConfirmation{{_id}}" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header flex-column">
+                  <h4 class="modal-title w-100">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to delete {{name}}</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <form action="/admin/students/{{_id}}?_method=DELETE" method="post" style="display: inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
           {{/each}}
         </tbody>
       </table>

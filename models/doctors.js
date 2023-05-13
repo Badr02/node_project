@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const professor = new Schema({
+const doctor = new Schema({
     username: {
         type: String,
         required: true,
@@ -12,12 +12,7 @@ const professor = new Schema({
     password: {
         type: String,
         required: true,
-    },
-    subjects: [{
-        type: Schema.Types.ObjectId,
-        required: false,
-        ref: 'subject'
-    }]
+    }
 });
 
-export default model('professor', professor);
+export default model('doctor', doctor);

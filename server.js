@@ -1,8 +1,9 @@
 import express from "express";
 import { engine } from "express-handlebars";
+import MethodOverride from "method-override";
 import departmentsRouter from "./routes/admin/departments.js";
 import subjectsRouter from "./routes/admin/subjects.js";
-import professorsRouter from "./routes/admin/professors.js";
+import doctorsRouter from "./routes/admin/doctors.js";
 import studentsRouter from "./routes/admin/students.js";
 
 import dotenv from 'dotenv';
@@ -14,6 +15,7 @@ mongoose.connect(process.env.mongoConnectionUrl);
 const app = express();
 
 app.use(express.urlencoded({ extended: true} ));
+app.use(MethodOverride('_method'))
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -21,7 +23,7 @@ app.set('views', './templates');
 
 app.use('/admin', departmentsRouter);
 app.use('/admin', subjectsRouter);
-app.use('/admin', professorsRouter);
+app.use('/admin', doctorsRouter);
 app.use('/admin', studentsRouter);
 
 app.use(express.static('images'));

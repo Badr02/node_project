@@ -11,8 +11,18 @@ const subject = new Schema({
     },
     department: {
         type: Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref: 'department'
+    },
+    previousReq: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'subject'
+    },
+    doctor: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'doctor'
     }
 });
 
