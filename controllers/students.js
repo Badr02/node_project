@@ -1,4 +1,6 @@
 import student from "../models/students.js";
+import bcrypt from "bcryptjs";
+
 
 export const index = async (req, res) => {
     const students = await student.find().lean();
@@ -11,7 +13,9 @@ export const create = (req, res) => {
 
 export const store = async (req, res) => {
     const { academicNumber, name, username, password } = req.body;
-    await student.create ({ academicNumber, name, username, password});
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPassword = bcrypt.hashSync(password, salt);
+    await student.create ({ academicNumber, name, username, password: encryptedPassword});
     res.redirect('/admin/students');
 }
 
@@ -27,7 +31,9 @@ export const update = async (req, res) => {
     if (password == ""){
         await student.findByIdAndUpdate(id, { $set: { academicNumber, name, username }} );
     } else {
-        await student.findByIdAndUpdate(id, { $set: { academicNumber, name, username, password }} );
+        const salt = bcrypt.genSaltSync(10);
+        const encryptedPassword = bcrypt.hashSync(password, salt);
+        await student.findByIdAndUpdate(id, { $set: { academicNumber, name, username, password: encryptedPassword }} );
     }
     res.redirect('/admin/students');
 }

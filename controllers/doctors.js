@@ -1,5 +1,6 @@
 import doctor from "../models/doctors.js";
 import subject from "../models/subjects.js";
+import bcrypt from "bcryptjs";
 
 export const index = async (req, res) => {
     const doctors = await doctor.find().lean();
@@ -12,7 +13,9 @@ export const create = (req, res) => {
 
 export const store = async (req, res) => {
     const { username, name, password } = req.body;
-    await doctor.create ({ username, name, password});
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPassword = bcrypt.hashSync(password, salt);
+    await doctor.create ({ username, name, password: encryptedPassword});
     res.redirect('/admin/doctors');
 }
 
@@ -29,7 +32,9 @@ export const update = async (req, res) => {
     if (password == ""){
         await doctor.findByIdAndUpdate(id, { $set: { username, name }} );
     } else {
-        await doctor.findByIdAndUpdate(id, { $set: { username, name, password }} );
+        const salt = bcrypt.genSaltSync(10);
+        const encryptedPassword = bcrypt.hashSync(password, salt);
+        await doctor.findByIdAndUpdate(id, { $set: { username, name, password: encryptedPassword }} );
     }
     res.redirect('/admin/doctors');
 }
