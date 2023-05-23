@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav" style="padding-top: 50px">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="/userImage.png" class="img-circle" alt="Image" width="70" height="70" />
+        </div>
+        <div class="col-sm-6" style="padding-left: 20px;">
+          <h4>{{admin.name}}</h4>
+          <p style="font-size: 12px; margin-top: -10px">Admin</p>
+          <a href="/admin/{{admin._id}}/edit" class="custom-btn" style="margin-right: 2px">Edit</a>
+          <a href="/logout" class="custom-btn" style="margin-right: 2px">Log out</a>
+        </div>
+      </div>
+
+      <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
+        <li><a href="/admin/departments">Departments</a></li>
+        <li class="active"><a href="/admin/subjects">Subjects</a></li>
+        <li><a href="/admin/doctors">Doctors</a></li>
+        <li><a href="/admin/students">Students</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9" style="padding: 20px">
+      <h2 class="text-center">Attendance sheet</h2>
+      <div class="text-right">
+        <button onclick="print()" class="btn btn-primary"
+          style="font-size: 15px; margin-top: -45px; margin-right:20px">Print</button>
+      </div>
+
+      <table id="table" class="table table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <th>Academic Number</th>
+            <th>Name</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {{#each subjects.students}}
+          <tr>
+            <td>{{academicNumber}}</td>
+            <td>{{name}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function print() {
+
+    // Variable to store the final csv data
+    var csv_data = [];
+
+    // Get each row data
+    var rows = document.getElementsByTagName('tr');
+    for (var i = 0; i < rows.length; i++) {
+
+      // Get each column data
+      var cols = rows[i].querySelectorAll('td,th');
+
+      // Stores each csv row data
+      var csvrow = [];
+      for (var j = 0; j < cols.length; j++) {
+
+        // Get the text data of each cell
+        // of a row and push it to csvrow
+        csvrow.push(cols[j].innerHTML);
+      }
+
+      // Combine each column value with comma
+      csv_data.push(csvrow.join(","));
+    }
+
+    // Combine each row data with new line character
+    csv_data = csv_data.join('\n');
+
+    // Call this function to download csv file 
+    downloadCSVFile(csv_data);
+
+  }
+
+  function downloadCSVFile(csv_data) {
+
+    // Create CSV file object and feed
+    // our csv_data into it
+    CSVFile = new Blob([csv_data], {
+      type: "text/csv"
+    });
+
+    // Create to temporary link to initiate
+    // download process
+    var temp_link = document.createElement('a');
+
+    // Download csv file
+    temp_link.download = "Attendace sheet.csv";
+    var url = window.URL.createObjectURL(CSVFile);
+    temp_link.href = url;
+
+    // This link should not be displayed
+    temp_link.style.display = "none";
+    document.body.appendChild(temp_link);
+
+    // Automatically click the link to
+    // trigger download
+    temp_link.click();
+    document.body.removeChild(temp_link);
+  }
+</script>

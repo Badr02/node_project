@@ -23,7 +23,12 @@ const subject = new Schema({
         type: Schema.Types.ObjectId,
         required: false,
         ref: 'doctor'
-    }
+    },
+    students: [{
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'student'
+    }],
 });
 
 export default model('subject', subject);

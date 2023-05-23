@@ -5,8 +5,10 @@ import departmentsRouter from "./routes/admin/departments.js";
 import subjectsRouter from "./routes/admin/subjects.js";
 import doctorsRouter from "./routes/admin/doctors.js";
 import studentsRouter from "./routes/admin/students.js";
-import loginRouter from "./routes/auth/auth.js";
-import { auth } from "./middleware/auth.js"
+import adminRouter from "./routes/admin/admin.js";
+import loginRouter from "./routes/auth/login.js";
+import logoutRouter from "./routes/auth/logout.js";
+import { adminAuth } from "./middleware/auth.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -26,11 +28,13 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './templates');
 
-app.use('/admin', auth, departmentsRouter);
-app.use('/admin', auth, subjectsRouter);
-app.use('/admin', auth, doctorsRouter);
-app.use('/admin', auth, studentsRouter);
+app.use('/admin', adminAuth, departmentsRouter);
+app.use('/admin', adminAuth, subjectsRouter);
+app.use('/admin', adminAuth, doctorsRouter);
+app.use('/admin', adminAuth, studentsRouter);
+app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 app.use(express.static('images'));
 

@@ -5,12 +5,11 @@
         <div class="col-sm-3">
           <img src="/userImage.png" class="img-circle" alt="Image" width="70" height="70" />
         </div>
-        <div class="col-sm-6" style="padding-left: 20px; margin-top: -5px">
-          <h4>Lana Del Rey</h4>
-          <p style="font-size: 12px; margin-top: -10px">ID: 200579</p>
+        <div class="col-sm-6" style="padding-left: 20px;">
+          <h4>{{admin.name}}</h4>
           <p style="font-size: 12px; margin-top: -10px">Admin</p>
-          <button class="custom-btn" style="margin-right: 2px">Edit</button>
-          <button class="custom-btn">Log out</button>
+          <a href="/admin/{{admin._id}}/edit" class="custom-btn" style="margin-right: 2px">Edit</a>
+          <a href="/logout" class="custom-btn" style="margin-right: 2px">Log out</a>
         </div>
       </div>
 
@@ -27,37 +26,18 @@
       <form action="/admin/doctors" method="post">
         <div>
           <label for="name">Name:</label>
-          <input
-            type="text"
-            class="form-control"
-            name="name"
-            autocomplete="off"
-          />
+          <input type="text" class="form-control" name="name" autocomplete="off" />
         </div>
         <div style="margin-top: 20px;">
           <label for="username">Username:</label>
-          <input
-            type="text"
-            class="form-control"
-            name="username"
-            autocomplete="off"
-          />
+          <input type="text" class="form-control" name="username" autocomplete="off" />
         </div>
         <div style="margin-top: 20px;">
           <label for="password">Password:</label>
-          <input
-            type="text"
-            class="form-control"
-            name="password"
-            autocomplete="off"
-          />
+          <input type="password" class="form-control" name="password" autocomplete="off" />
         </div>
         <div class="text-right" style="margin-top: 30px;">
-          <button
-            type="submit"
-            class="btn btn-success"
-            style="font-size: 15px;"
-          >Submit</button>
+          <button type="submit" class="btn btn-success" style="font-size: 15px;">Submit</button>
         </div>
       </form>
     </div>

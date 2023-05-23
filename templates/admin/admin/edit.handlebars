@@ -17,25 +17,21 @@
         <li><a href="/admin/departments">Departments</a></li>
         <li><a href="/admin/subjects">Subjects</a></li>
         <li><a href="/admin/doctors">Doctors</a></li>
-        <li class="active"><a href="/admin/students">Students</a></li>
+        <li><a href="/admin/students">Students</a></li>
       </ul>
     </div>
 
     <div class="col-sm-9" style="padding: 60px">
+      <h2 class="text-center" style="font-weight: bold; margin-bottom:30px">Admin Info</h2>
 
-      <form action="/admin/students/{{student._id}}?_method=PUT" method="post">
+      <form action="/admin/{{admin._id}}?_method=PUT" method="post">
         <div>
-          <label for="academicNumber">Academic Number:</label>
-          <input type="text" class="form-control" name="academicNumber" autocomplete="off"
-            value="{{student.academicNumber}}" />
-        </div>
-        <div style="margin-top: 20px;">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" name="name" autocomplete="off" value="{{student.name}}" />
+          <input type="text" class="form-control" name="name" autocomplete="off" value="{{admin.name}}" />
         </div>
         <div style="margin-top: 20px;">
           <label for="username">Username:</label>
-          <input type="text" class="form-control" name="username" autocomplete="off" value="{{student.username}}" />
+          <input type="text" class="form-control" name="username" autocomplete="off" value="{{admin.username}}" />
         </div>
         <div style="margin-top: 20px;">
           <label for="password">Password:</label>

@@ -5,12 +5,11 @@
         <div class="col-sm-3">
           <img src="/userImage.png" class="img-circle" alt="Image" width="70" height="70" />
         </div>
-        <div class="col-sm-6" style="padding-left: 20px; margin-top: -5px">
-          <h4>Lana Del Rey</h4>
-          <p style="font-size: 12px; margin-top: -10px">ID: 200579</p>
+        <div class="col-sm-6" style="padding-left: 20px;">
+          <h4>{{admin.name}}</h4>
           <p style="font-size: 12px; margin-top: -10px">Admin</p>
-          <button class="custom-btn" style="margin-right: 2px">Edit</button>
-          <button class="custom-btn">Log out</button>
+          <a href="/admin/{{admin._id}}/edit" class="custom-btn" style="margin-right: 2px">Edit</a>
+          <a href="/logout" class="custom-btn" style="margin-right: 2px">Log out</a>
         </div>
       </div>
 
@@ -49,6 +48,7 @@
             <td>{{previousReq.name}}</td>
             <td>
               <a class="btn btn-primary" href="/admin/subjects/{{_id}}/edit">Edit</a>
+              <a class="btn btn-primary" href="/admin/subjects/{{_id}}/attendance">Attendance sheet</a>
               <a class="btn btn-danger trigger-btn" data-toggle="modal" href="#deleteConfirmation{{_id}}">Delete</a>
 
               <div id="deleteConfirmation{{_id}}" class="modal fade">

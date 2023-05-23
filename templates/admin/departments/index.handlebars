@@ -5,12 +5,11 @@
         <div class="col-sm-3">
           <img src="/userImage.png" class="img-circle" alt="Image" width="70" height="70" />
         </div>
-        <div class="col-sm-6" style="padding-left: 20px; margin-top: -5px">
-          <h4>Lana Del Rey</h4>
-          <p style="font-size: 12px; margin-top: -10px">ID: 200579</p>
+        <div class="col-sm-6" style="padding-left: 20px;/">
+          <h4>{{admin.name}}</h4>
           <p style="font-size: 12px; margin-top: -10px">Admin</p>
-          <button class="custom-btn" style="margin-right: 2px">Edit</button>
-          <button class="custom-btn">Log out</button>
+          <a href="/admin/{{admin._id}}/edit" class="custom-btn" style="margin-right: 2px">Edit</a>
+          <a href="/logout" class="custom-btn" style="margin-right: 2px">Log out</a>
         </div>
       </div>
 
@@ -49,26 +48,26 @@
             </td>
           </tr>
 
-      <div id="deleteConfirmation{{_id}}" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-          <div class="modal-content">
-            <div class="modal-header flex-column">
-              <h4 class="modal-title w-100">Are you sure?</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p>Do you really want to delete {{name}} department</p>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <form action="/admin/departments/{{_id}}?_method=DELETE" method="post" style="display: inline">
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-              
+          <div id="deleteConfirmation{{_id}}" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header flex-column">
+                  <h4 class="modal-title w-100">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to delete {{name}} department</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <form action="/admin/departments/{{_id}}?_method=DELETE" method="post" style="display: inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
           {{/each}}
 
