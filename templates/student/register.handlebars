@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav" style="padding-top: 50px">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="/userImage.png" class="img-circle" alt="Image" width="70" height="70" />
+        </div>
+        <div class="col-sm-6" style="padding-left: 20px;">
+          <h4>{{admin.name}}</h4>
+          <p style="font-size: 12px; margin-top: -10px">Student</p>
+          <a href="/admin/{{admin._id}}/edit" class="custom-btn" style="margin-right: 2px">Edit</a>
+          <a href="/logout" class="custom-btn" style="margin-right: 2px">Log out</a>
+        </div>
+      </div>
+
+      <ul class="nav nav-pills nav-stacked" style="padding-top: 40px">
+        <li><a href="/student/subjects">Subjects</a></li>
+        <li class="active"><a href="/student/register">Registration</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9" style="padding: 20px">
+      <h2 class="text-center">Subjects</h2>
+
+          <form method="post" action="/student/register">
+      <table class="table table-hover" style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Previous Requirement</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each subjects}}
+          <tr>
+            <td>{{code}}</td>
+            <td>{{name}}</td>
+            <td>{{department}}</td>
+            <td>{{previousReq}}</td>
+            <td>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="subject_code" value={{code}}>
+                {{!-- <a class="btn btn-primary" href="/student/subjects/{{_id}}/download">Place holder</a> --}}
+              </div>
+            </td>
+          </tr>
+          
+          {{/each}}
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </div>
+</div>

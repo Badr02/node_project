@@ -11,6 +11,7 @@ export const adminAuth = (req, res, next) => {
             return res.send("You don't have permission to access this page");
         }
     } catch(error) {
-        return res.redirect('/login');
+        //return res.redirect('/login');
+        next();
     }
 };
