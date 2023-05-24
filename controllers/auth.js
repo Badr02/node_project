@@ -25,7 +25,7 @@ export const login = async (req, res) => {
         if (!checkInfo(res, loggedUser, password, "doctor")) {
             res.render('auth/login', { message });
         } else {
-            res.send("alright");
+            res.redirect('/student/subject');
         }
 
     } else if (userType == "student") {
@@ -33,7 +33,7 @@ export const login = async (req, res) => {
         if (!checkInfo(res, loggedUser, password, "student")) {
             res.render('auth/login', { message });
         } else {
-            res.send("alright");
+            res.redirect('/student/subjects');
         }
     }
 }
