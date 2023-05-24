@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from 'body-parser';
 import { engine } from "express-handlebars";
 import MethodOverride from "method-override";
 import departmentsRouter from "./routes/admin/departments.js";
@@ -9,6 +10,7 @@ import adminRouter from "./routes/admin/admin.js";
 import loginRouter from "./routes/auth/login.js";
 import logoutRouter from "./routes/auth/logout.js";
 import { adminAuth } from "./middleware/auth.js";
+import studentSubjectsRouter from './routes/student/subjects.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -24,6 +26,12 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true} ));
 app.use(MethodOverride('_method'))
 
+// Parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parse JSON bodies
+app.use(bodyParser.json());
+
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './templates');
@@ -35,6 +43,8 @@ app.use('/admin', adminAuth, studentsRouter);
 app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+
+app.use('/student', adminAuth, studentSubjectsRouter)
 
 app.use(express.static('images'));
 
