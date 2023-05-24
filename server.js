@@ -9,7 +9,7 @@ import studentsRouter from "./routes/admin/students.js";
 import adminRouter from "./routes/admin/admin.js";
 import loginRouter from "./routes/auth/login.js";
 import logoutRouter from "./routes/auth/logout.js";
-import { adminAuth } from "./middleware/auth.js";
+import { adminAuth, studentAuth } from "./middleware/auth.js";
 import studentSubjectsRouter from './routes/student/subjects.js';
 
 import dotenv from 'dotenv';
@@ -44,7 +44,7 @@ app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 
-app.use('/student', adminAuth, studentSubjectsRouter)
+app.use('/student', studentAuth, studentSubjectsRouter)
 
 app.use(express.static('images'));
 

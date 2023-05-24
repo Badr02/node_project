@@ -90,7 +90,7 @@ export const student_subjects_get = async (req, res) => {
   try {
     const subjects = await subject.find({ students: student }).lean();
 
-    res.render("student/index", { subjects });
+    res.render("student/index", { subjects, student });
   } catch (error) {
     // Handle any potential errors
     console.error(error);
